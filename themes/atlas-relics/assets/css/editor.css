@@ -1,0 +1,25 @@
+/**
+ * Editor canvas alignment with the front-end theme.
+ */
+
+.editor-styles-wrapper {
+  background: var(--wp--preset--color--ivory, #f4efe4);
+  color: var(--wp--preset--color--ink, #1a1714);
+}
+
+.editor-styles-wrapper .ar-kicker {
+  font-family: var(--wp--preset--font-family--sans);
+  font-size: var(--wp--preset--font-size--small);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--wp--preset--color--gold);
+}
+
+.editor-styles-wrapper .ar-card {
+  border: 1px solid var(--wp--preset--color--line);
+  background: var(--wp--preset--color--paper);
+}
+
+.block-editor-block-list__layout .wp-block-button__link {
+  border-radius: 0;
+}

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 180" role="img" aria-labelledby="arMirrorTitle arMirrorDesc">
+  <title id="arMirrorTitle">Conscious Mirror emblem</title>
+  <desc id="arMirrorDesc">A quiet rectangular frame with a second inner frame, like a looking glass.</desc>
+  <rect width="240" height="180" fill="#E8DFD0"/>
+  <rect x="28" y="22" width="184" height="136" fill="none" stroke="#101820" stroke-width="1.2"/>
+  <rect x="44" y="38" width="152" height="104" fill="none" stroke="#B08D57" stroke-width="1"/>
+  <rect x="58" y="52" width="124" height="76" fill="#F4EFE4" stroke="#1C2128" stroke-width="0.6"/>
+  <line x1="58" y1="90" x2="182" y2="90" stroke="#101820" stroke-width="0.4" opacity="0.35"/>
+</svg>
