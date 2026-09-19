@@ -58,8 +58,25 @@
   }
 
   function placeholderPhoto(label, index, count) {
-    const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="800" height="520"><rect fill="#d8cfc4" width="100%" height="100%"/><rect x="24" y="24" width="752" height="472" fill="#f7f3ef" stroke="#6e5648" stroke-width="3"/><text x="50%" y="46%" text-anchor="middle" fill="#5e493e" font-family="Georgia,serif" font-size="34">${label}</text><text x="50%" y="58%" text-anchor="middle" fill="#7a5c4b" font-family="sans-serif" font-size="18">Sample photo ${count}</text></svg>`;
-    return { slot: "p" + index, label, name: `${label}-${count}.svg`, dataUrl: "data:image/svg+xml;utf8," + encodeURIComponent(svg) };
+    const canvas = document.createElement("canvas");
+    canvas.width = 800;
+    canvas.height = 520;
+    const ctx = canvas.getContext("2d");
+    ctx.fillStyle = "#c9bdb0";
+    ctx.fillRect(0, 0, 800, 520);
+    ctx.fillStyle = "#f7f3ef";
+    ctx.fillRect(28, 28, 744, 464);
+    ctx.strokeStyle = "#6e5648";
+    ctx.lineWidth = 4;
+    ctx.strokeRect(28, 28, 744, 464);
+    ctx.fillStyle = "#5e493e";
+    ctx.font = "34px Georgia, serif";
+    ctx.textAlign = "center";
+    ctx.fillText(label, 400, 250);
+    ctx.font = "18px sans-serif";
+    ctx.fillStyle = "#7a5c4b";
+    ctx.fillText("Sample photo " + count, 400, 295);
+    return { slot: "p" + index, label, name: `${label}-${count}.jpg`, dataUrl: canvas.toDataURL("image/jpeg", 0.82) };
   }
 
   function sampleInquiry() {
