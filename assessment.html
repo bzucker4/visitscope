@@ -1,1 +1,181 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="refresh" content="0;url=https://cszhl48y9t.zite.so"><title>VisitScope Project Assessment</title><link rel="canonical" href="https://cszhl48y9t.zite.so"></head><body><p>Opening the <a href="https://cszhl48y9t.zite.so">VisitScope Project Assessment</a>…</p></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#f6f2ed">
+<title>Project Assessment | VisitScope</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body class="assessment-page">
+<div class="demo-ribbon demo-only"><span>Demo</span><a href="index.html">Overview</a><a href="queue.html">Operator queue</a></div>
+<div class="page-shell">
+  <header class="topbar">
+    <div class="business-lockup">
+      <div class="business-mark" data-business-mark>HT</div>
+      <div>
+        <strong data-business-name>Sample Home Transitions</strong>
+        <span>Project assessment by <span data-brand-name>VisitScope</span></span>
+      </div>
+    </div>
+    <div class="trust-mini">About 6 minutes</div>
+  </header>
+
+  <div class="progress-shell" id="progressShell">
+    <div class="progress-meta"><span id="stepLabel">Getting started</span><span id="progressText">0%</span></div>
+    <div class="progress-track"><div id="progressBar"></div></div>
+  </div>
+
+  <div class="assessment-card">
+    <section class="step intro-step">
+      <div class="intro-badge">Project intake</div>
+      <h1>Tell us about the home and the project.</h1>
+      <p class="hero-copy">This guided assessment helps the team understand scope, timing, and the spaces that matter before anyone calls or visits.</p>
+      <div class="trust-row">
+        <div><span class="trust-icon">✓</span><strong>Short and specific</strong><small>Only the questions that change the next step</small></div>
+        <div><span class="trust-icon">✓</span><strong>Photos that help</strong><small>Guided rooms instead of a generic upload</small></div>
+        <div><span class="trust-icon">✓</span><strong>Reviewed by people</strong><small>A project brief is prepared before outreach</small></div>
+      </div>
+      <button class="btn btn-primary btn-large" data-next="0">Start the assessment <span>→</span></button>
+      <p class="fine-print">Your details are used to qualify the project and contact you about next steps.</p>
+    </section>
+
+    <section class="step hidden">
+      <div class="eyebrow">Step 1</div>
+      <h2>What kind of help are you looking for?</h2>
+      <p class="subcopy">Choose the closest fit. The next questions will follow from this.</p>
+      <div class="choice-grid" id="serviceChoices"></div>
+      <p class="error"></p>
+      <div class="nav-actions"><button class="btn btn-ghost" data-back="0">Back</button><button class="btn btn-primary" data-next="1" data-require="service">Continue</button></div>
+    </section>
+
+    <section class="step hidden">
+      <div class="eyebrow">Step 2</div>
+      <h2 id="situationTitle">What is prompting the project?</h2>
+      <p class="subcopy">This helps the team understand the situation before the first conversation.</p>
+      <div class="choice-grid" id="situationChoices"></div>
+      <p class="error"></p>
+      <div class="nav-actions"><button class="btn btn-ghost" data-back="1">Back</button><button class="btn btn-primary" data-next="2" data-require="situation">Continue</button></div>
+    </section>
+
+    <section class="step hidden">
+      <div class="eyebrow">Step 3</div>
+      <h2>Tell us about the home.</h2>
+      <p class="subcopy">Property type, size, and extra spaces change how the project is planned.</p>
+      <div class="choice-grid compact" id="propertyChoices"></div>
+      <div class="two-col">
+        <div class="field"><label for="bedrooms">Bedrooms <span>optional</span></label><input id="bedrooms" inputmode="numeric" placeholder="4"></div>
+        <div class="field"><label for="years">Years occupied <span>optional</span></label><input id="years" inputmode="numeric" placeholder="38"></div>
+      </div>
+      <div class="field">
+        <label>Additional spaces</label>
+        <div class="toggle-grid" id="extraAreaChoices"></div>
+      </div>
+      <p class="error"></p>
+      <div class="nav-actions"><button class="btn btn-ghost" data-back="2">Back</button><button class="btn btn-primary" data-next="3" data-require="propertyType">Continue</button></div>
+    </section>
+
+    <section class="step hidden">
+      <div class="eyebrow">Step 4</div>
+      <h2>How full is the home, and has sorting started?</h2>
+      <p class="subcopy">Contents and sorting status are two of the strongest scope signals.</p>
+      <div class="field">
+        <label>How full are the spaces?</label>
+        <div class="level-grid" id="fullnessChoices"></div>
+      </div>
+      <div class="field">
+        <label>Has sorting started?</label>
+        <div class="pill-grid" data-pill-group="sorted" id="sortedChoices"></div>
+      </div>
+      <p class="error"></p>
+      <div class="nav-actions"><button class="btn btn-ghost" data-back="3">Back</button><button class="btn btn-primary" data-next="4" data-require="fullness,sorted">Continue</button></div>
+    </section>
+
+    <section class="step hidden">
+      <div class="eyebrow">Step 5</div>
+      <h2 id="detailsTitle">What may need to happen?</h2>
+      <p class="subcopy">Select anything that looks relevant. You do not need a perfect list.</p>
+      <div id="detailsContent"></div>
+      <div class="nav-actions"><button class="btn btn-ghost" data-back="4">Back</button><button class="btn btn-primary" data-next="5">Continue</button></div>
+    </section>
+
+    <section class="step hidden">
+      <div class="eyebrow">Step 6</div>
+      <h2>Timing, sale plans, and who decides.</h2>
+      <p class="subcopy">Deadlines and family involvement change whether the next step is a call or a visit.</p>
+      <div class="field">
+        <label>Desired completion</label>
+        <div class="pill-grid" data-pill-group="deadline" id="deadlineChoices"></div>
+      </div>
+      <div class="field">
+        <label>Are you preparing the property for sale?</label>
+        <div class="pill-grid" data-pill-group="salePrep" id="salePrepChoices"></div>
+      </div>
+      <div class="two-col">
+        <div class="field"><label for="decisionMakers">Decision-makers <span>optional</span></label><input id="decisionMakers" inputmode="numeric" placeholder="3"></div>
+        <div class="field"><label for="outOfState">Out-of-state family <span>optional</span></label><input id="outOfState" inputmode="numeric" placeholder="2"></div>
+      </div>
+      <div class="field"><label for="access">Access notes <span>optional</span></label><input id="access" placeholder="Steep basement stairs, limited parking..."></div>
+      <div class="field"><label for="notes">Anything else the team should know? <span>optional</span></label><textarea id="notes" rows="4" placeholder="Who is moving, what has already been decided, or what feels hardest."></textarea></div>
+      <p class="error"></p>
+      <div class="nav-actions"><button class="btn btn-ghost" data-back="5">Back</button><button class="btn btn-primary" data-next="6" data-require="deadline,salePrep">Continue</button></div>
+    </section>
+
+    <section class="step hidden">
+      <div class="eyebrow">Step 7</div>
+      <h2>Photograph the spaces that matter.</h2>
+      <p class="subcopy">Wide shots of the recommended rooms help the team see the project before a visit.</p>
+      <div class="photo-progress">
+        <div><strong id="photoCount">0</strong> of <span id="photoRecommended">4</span> recommended spaces added</div>
+        <div class="photo-meter"><span id="photoMeter"></span></div>
+      </div>
+      <div class="photo-grid" id="photoGrid"></div>
+      <p class="photo-note">Photos stay with this project brief. You can skip a room if you cannot access it.</p>
+      <div class="nav-actions"><button class="btn btn-ghost" data-back="6">Back</button><button class="btn btn-primary" data-next="7">Continue</button></div>
+    </section>
+
+    <section class="step hidden">
+      <div class="eyebrow">Step 8</div>
+      <h2>How should the team reach you?</h2>
+      <p class="subcopy">These details are used only to follow up about this project.</p>
+      <div class="field"><label for="name">Name</label><input id="name" autocomplete="name"></div>
+      <div class="two-col">
+        <div class="field"><label for="email">Email</label><input id="email" type="email" autocomplete="email"></div>
+        <div class="field"><label for="phone">Phone <span>optional</span></label><input id="phone" type="tel" autocomplete="tel"></div>
+      </div>
+      <div class="field"><label for="zip">ZIP code</label><input id="zip" inputmode="numeric" autocomplete="postal-code"></div>
+      <label class="consent"><input id="consent" type="checkbox"><span>I agree to be contacted about this project assessment.</span></label>
+      <p class="error" id="contactError"></p>
+      <div class="nav-actions"><button class="btn btn-ghost" data-back="7">Back</button><button class="btn btn-primary" id="contactNext">Submit assessment</button></div>
+    </section>
+
+    <section class="step result-step hidden">
+      <div class="result-check">✓</div>
+      <h2>Thank you, <span id="leadFirstName">there</span>.</h2>
+      <p class="hero-copy" id="completeLead">The team will review the project details and follow up with the next step.</p>
+      <div class="consumer-summary">
+        <div class="summary-head"><span>What you shared</span></div>
+        <div id="consumerSummary"></div>
+      </div>
+      <div class="next-steps">
+        <div><span>1</span><p><strong>A project brief is prepared</strong><small>Scope, timing, photos and missing information are reviewed internally.</small></p></div>
+        <div><span>2</span><p><strong>The team decides the next step</strong><small>That may be a request for a few more details, a call, or a visit.</small></p></div>
+        <div><span>3</span><p><strong>You will hear from the business</strong><small>They will use the contact details you provided.</small></p></div>
+      </div>
+      <div class="result-actions">
+        <button class="btn btn-primary btn-large" id="consultationBtn">Request a conversation</button>
+        <a class="text-btn demo-only" id="viewBusinessBrief" href="#">View the project brief the team received</a>
+        <button class="text-btn" id="editAssessment">Edit this assessment</button>
+      </div>
+    </section>
+  </div>
+  <footer>Project intake by <strong data-brand-name>VisitScope</strong></footer>
+</div>
+<script src="config/business.js"></script>
+<script src="config/rules.js"></script>
+<script src="js/qualify.js"></script>
+<script src="js/store.js"></script>
+<script src="js/shared.js"></script>
+<script src="js/assessment.js"></script>
+</body>
+</html>

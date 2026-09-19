@@ -1,11 +1,28 @@
-VISITSCOPE V4
+VISITSCOPE PRE-CONSULTATION MVP
 
-Netlify-ready static marketing site.
+Zero-build static site. Deploy by publishing this folder (Netlify drop-in).
 
-- index.html: VisitScope sales/demo page
-- brief.html: example business-facing VisitScope Project Brief
-- assessment.html: redirect to the live VisitScope Project Assessment
-- styles.css: existing V3.2 visual system preserved
+Client
+- assessment.html: guided intake, photos, submit
 
-Live client assessment:
-https://cszhl48y9t.zite.so
+Operator
+- queue.html: inquiry queue and statuses
+- brief.html?id=...: project brief and next-step actions
+- brief.html: marketing example brief
+
+Configuration (edit these, not the app)
+- config/business.js: brand, services, questions, copy
+- config/rules.js: qualification dimensions, signals, missing fields, recommended next step
+
+Core application
+- js/qualify.js: deterministic rule engine
+- js/store.js: IndexedDB inquiries + photos
+- js/assessment.js, js/queue.js, js/brief.js: workflow UI
+
+Not included: billing, homeowner accounts, general CRM, AI chat.
+
+Local notes
+- Inquiries stay in this browser. A client phone and an operator desktop do not share data.
+- Clearing site data clears the queue.
+- Optional operatorPin in business.js gates the queue and live briefs.
+- node --test tests/qualify.test.js
