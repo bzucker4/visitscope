@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Inquiry Queue | VisitScope</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body class="brief-page queue-page">
+<header class="marketing-nav compact-nav">
+  <a class="pv-brand" href="index.html"><span class="pv-mark">V</span><strong>VisitScope</strong></a>
+  <div class="brief-nav-actions">
+    <a href="assessment.html">Client assessment</a>
+    <a class="nav-cta" href="index.html">Overview</a>
+  </div>
+</header>
+<main class="brief-page-main">
+  <div class="brief-context">
+    <span class="kicker">Operator view</span>
+    <h1>Inquiry queue</h1>
+    <p>New assessments arrive here as decision-ready project briefs. This workflow stops at the next consultation step.</p>
+  </div>
+  <div id="pinGate" class="operator-gate hidden">
+    <label for="operatorPin">Operator PIN</label>
+    <div class="pin-row">
+      <input id="operatorPin" type="password" autocomplete="current-password">
+      <button class="btn btn-primary" id="unlockQueue" type="button">Open queue</button>
+    </div>
+    <p class="error" id="pinError"></p>
+  </div>
+  <div id="queueApp" class="hidden">
+    <div class="queue-toolbar">
+      <div class="queue-filters" id="statusFilters"></div>
+      <div class="queue-tools demo-only">
+        <button class="btn btn-secondary" id="seedSample" type="button">Add sample inquiry</button>
+        <button class="btn btn-ghost" id="clearQueue" type="button">Clear local queue</button>
+      </div>
+    </div>
+    <div id="queueList" class="queue-list"></div>
+  </div>
+</main>
+<script src="config/business.js"></script>
+<script src="config/rules.js"></script>
+<script src="js/qualify.js"></script>
+<script src="js/store.js"></script>
+<script src="js/shared.js"></script>
+<script src="js/queue.js"></script>
+</body>
+</html>
