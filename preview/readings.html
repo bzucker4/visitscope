@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Readings | Atlas Relics</title>
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="../themes/atlas-relics/assets/css/screen.css">
+</head>
+<body>
+  <div class="preview-banner">Design preview. Live requests are handled by the Atlas Relics Core plugin in WordPress.</div>
+  <a class="skip-link screen-reader-text" href="#content">Skip to content</a>
+  <div class="wp-site-blocks">
+    <header class="ar-header wide-pad" style="background:var(--wp--preset--color--navy);color:var(--wp--preset--color--ivory);padding:1.1rem var(--wp--preset--spacing--40);">
+      <div class="alignwide" style="display:flex;justify-content:space-between;gap:1.5rem;align-items:center;flex-wrap:wrap;">
+        <a class="site-title" href="home.html">Atlas Relics</a>
+        <nav class="ar-nav" aria-label="Primary">
+          <a href="home.html">Home</a>
+          <a href="conscious-mirror.html">Conscious Mirror</a>
+          <a href="readings.html" aria-current="page">Readings</a>
+        </nav>
+      </div>
+    </header>
+    <main id="content">
+      <section class="wide-pad" style="background:var(--wp--preset--color--navy);color:var(--wp--preset--color--ivory);padding:var(--wp--preset--spacing--60) var(--wp--preset--spacing--40) var(--wp--preset--spacing--50);">
+        <div class="constrained" style="margin-left:0;width:min(46rem, 100%);">
+          <p class="ar-kicker">Readings</p>
+          <h1>An hour of looking, with a frame.</h1>
+          <p>A reading is a scheduled conversation. You bring a question, a pattern, or a stretch of life that will not sit still. We look at it together, then we stop.</p>
+        </div>
+      </section>
+      <section class="wide-pad" style="padding:var(--wp--preset--spacing--60) var(--wp--preset--spacing--40) var(--wp--preset--spacing--70);">
+        <div class="constrained">
+          <h2>What it is not</h2>
+          <p>This is not psychotherapy, medical advice, legal counsel, or a fortune. We will not diagnose you. If the conversation belongs in a clinic, we will say so and stop.</p>
+          <h2>Request a time</h2>
+          <form class="ar-form" action="#sent" method="get">
+            <label for="ar_name">Name
+              <input id="ar_name" name="ar_name" required autocomplete="name">
+            </label>
+            <label for="ar_email">Email
+              <input id="ar_email" name="ar_email" type="email" required autocomplete="email">
+            </label>
+            <label for="ar_format">Preferred format
+              <select id="ar_format" name="ar_format">
+                <option>Video conversation</option>
+                <option>Written exchange</option>
+                <option>Either is fine</option>
+              </select>
+            </label>
+            <label for="ar_topic">What do you want to look at?
+              <textarea id="ar_topic" name="ar_topic" required></textarea>
+              <span class="ar-field-help">Ordinary language is enough. You do not need a diagnosis or a mythic autobiography.</span>
+            </label>
+            <label class="ar-consent" for="ar_consent">
+              <input id="ar_consent" name="ar_consent" type="checkbox" required>
+              <span>We use your details only to reply and, if you ask, to schedule a session. We do not sell this information.</span>
+            </label>
+            <p><button class="wp-element-button" type="submit">Send request</button></p>
+          </form>
+          <p id="sent" hidden class="ar-notice is-success" role="status">This preview does not send mail. In WordPress the plugin stores the request and emails the inquiry inbox.</p>
+        </div>
+      </section>
+    </main>
+    <footer class="ar-footer wide-pad" style="padding:var(--wp--preset--spacing--60) var(--wp--preset--spacing--40);">
+      <p class="ar-colophon">© Atlas Relics</p>
+    </footer>
+  </div>
+  <script src="../plugins/atlas-relics-core/assets/forms.js"></script>
+  <script>
+    document.querySelector(".ar-form").addEventListener("submit", function (event) {
+      event.preventDefault();
+      var note = document.getElementById("sent");
+      note.hidden = false;
+      note.focus();
+    });
+  </script>
+</body>
+</html>

@@ -19,6 +19,13 @@ define( 'ATLAS_RELICS_URI', get_template_directory_uri() );
 function atlas_relics_setup() {
 	load_theme_textdomain( 'atlas-relics', ATLAS_RELICS_DIR . '/languages' );
 
+	register_nav_menus(
+		array(
+			'primary' => __( 'Primary', 'atlas-relics' ),
+			'footer'  => __( 'Footer', 'atlas-relics' ),
+		)
+	);
+
 	add_theme_support( 'wp-block-styles' );
 	add_editor_style( 'assets/css/editor.css' );
 

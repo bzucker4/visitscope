@@ -50,6 +50,11 @@ npx wp-env start
 
 The setup script is for local machines only. It never deploys, never writes to production, and never commits secrets.
 
+## Design preview
+
+`preview/` renders Home, Conscious Mirror, and Readings with the theme tokens so the visual system can be inspected without WordPress.
+
+
 ## Design
 
 The theme uses `theme.json` tokens:

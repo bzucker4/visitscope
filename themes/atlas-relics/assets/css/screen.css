@@ -261,6 +261,47 @@ main#wp--skip-link--target {
   border-color: #8a2f2a;
 }
 
+.ar-honeypot {
+  position: absolute;
+  left: -10000px;
+  height: 0;
+  overflow: hidden;
+}
+
+.ar-consent {
+  display: grid !important;
+  grid-template-columns: auto 1fr;
+  gap: 0.6rem;
+  align-items: start;
+  font-weight: 400 !important;
+  letter-spacing: 0 !important;
+}
+
+.ar-consent input {
+  width: auto !important;
+  min-height: 1.25rem;
+  margin-top: 0.25rem;
+}
+
+.ar-product-subtitle {
+  font-family: var(--wp--preset--font-family--serif);
+  font-style: italic;
+  color: var(--wp--preset--color--muted);
+  margin-top: 0;
+}
+
+.ar-intended-use {
+  max-width: 42rem;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  border: 1px solid var(--wp--preset--color--line);
+  background: var(--wp--preset--color--paper);
+}
+
+.ar-intended-use h2 {
+  margin-top: 0;
+}
+
 .ar-notice {
   padding: 1rem 1.15rem;
   border: 1px solid var(--wp--preset--color--line);
