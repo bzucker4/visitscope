@@ -77,18 +77,6 @@ function atlas_relics_enqueue_block_editor_assets() {
 }
 add_action( 'enqueue_block_editor_assets', 'atlas_relics_enqueue_block_editor_assets' );
 
-/**
- * Skip link for keyboard users.
- *
- * @param string $template Current template HTML.
- * @return string
- */
-function atlas_relics_skip_link( $template ) {
-	$skip  = '<a class="skip-link screen-reader-text" href="#wp--skip-link--target">';
-	$skip .= esc_html__( 'Skip to content', 'atlas-relics' );
-	$skip .= '</a>';
-	return $skip . $template;
-}
 add_filter( 'render_block_core/template-part', 'atlas_relics_maybe_prepend_skip_link', 10, 2 );
 
 /**
