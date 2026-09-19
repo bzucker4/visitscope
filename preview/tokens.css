@@ -153,7 +153,11 @@ h3 { font-size: var(--wp--preset--font-size--x-large); }
 
 @media (max-width: 900px) {
   .card-grid, .also-grid, .split { grid-template-columns: 1fr; }
-  .ar-header .ar-nav { display: none; }
+  .ar-header .ar-nav {
+    display: flex;
+    width: 100%;
+    gap: 0.75rem;
+  }
 }
 
 .preview-banner {
