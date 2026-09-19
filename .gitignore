@@ -1,0 +1,63 @@
+# Operating systems
+.DS_Store
+Thumbs.db
+
+# Editors
+*.swp
+*.swo
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# WordPress runtime (never commit a live install)
+/wordpress/
+/wp-content/uploads/
+/wp-content/upgrade/
+/wp-content/cache/
+/wp-content/backup-db/
+/wp-content/blogs.dir/
+/wp-content/upgrade-temp-backup/
+/wp-content/plugins/woocommerce/
+/wp-content/plugins/sqlite-database-integration/
+/wp-content/mu-plugins/
+/wp-content/debug.log
+wp-config.php
+wp-config-local.php
+.htaccess
+
+# Local environment
+.env
+.env.*
+!.env.example
+docker-data/
+mysql-data/
+.wp-env.override.json
+
+# Dependencies
+/vendor/
+node_modules/
+composer.lock
+
+# Logs and temp
+*.log
+*.sql
+*.sql.gz
+tmp/
+temp/
+.cache/
+
+# Secrets and credentials
+*.pem
+*.key
+*.p12
+auth.json
+secrets.json
+credentials.json
+id_rsa*
+
+# OS / packaging
+*.zip
+*.tar.gz
+dist/
+build/

@@ -1,0 +1,9 @@
+.ar-admin h1 {
+	font-weight: 500;
+}
+
+.ar-block-placeholder {
+	padding: 1.25rem;
+	border: 1px dashed #b08d57;
+	background: #f4efe4;
+}

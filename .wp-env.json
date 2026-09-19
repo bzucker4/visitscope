@@ -1,0 +1,16 @@
+{
+  "core": "WordPress/WordPress#6.6",
+  "phpVersion": "8.2",
+  "plugins": ["./plugins/atlas-relics-core", "https://downloads.wordpress.org/plugin/woocommerce.latest-stable.zip"],
+  "themes": ["./themes/atlas-relics"],
+  "config": {
+    "WP_DEBUG": true,
+    "WP_DEBUG_LOG": true,
+    "WP_DEBUG_DISPLAY": false,
+    "DISALLOW_FILE_EDIT": true,
+    "WP_ENVIRONMENT_TYPE": "local"
+  },
+  "lifecycleScripts": {
+    "afterStart": "wp theme activate atlas-relics && wp plugin activate woocommerce atlas-relics-core"
+  }
+}

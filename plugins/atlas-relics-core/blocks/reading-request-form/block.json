@@ -1,0 +1,15 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "atlas-relics/reading-request-form",
+  "title": "Reading request form",
+  "category": "atlas-relics",
+  "icon": "edit",
+  "description": "Public form for requesting a reflective reading.",
+  "textdomain": "atlas-relics-core",
+  "supports": {
+    "html": false,
+    "align": ["wide"]
+  },
+  "render": "file:./render.php"
+}

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 180" role="img" aria-labelledby="arMapTitle arMapDesc">
+  <title id="arMapTitle">Pattern Map emblem</title>
+  <desc id="arMapDesc">A spare cartographic grid with a few connected points.</desc>
+  <rect width="240" height="180" fill="#F4EFE4"/>
+  <g stroke="#D5CBBA" stroke-width="0.5">
+    <path d="M20 40 H220 M20 70 H220 M20 100 H220 M20 130 H220"/>
+    <path d="M50 20 V160 M90 20 V160 M130 20 V160 M170 20 V160"/>
+  </g>
+  <circle cx="70" cy="60" r="4" fill="none" stroke="#101820" stroke-width="1.2"/>
+  <circle cx="150" cy="88" r="4" fill="none" stroke="#101820" stroke-width="1.2"/>
+  <circle cx="110" cy="128" r="4" fill="none" stroke="#B08D57" stroke-width="1.2"/>
+  <path d="M70 60 L150 88 L110 128" fill="none" stroke="#8A6D3F" stroke-width="1"/>
+</svg>

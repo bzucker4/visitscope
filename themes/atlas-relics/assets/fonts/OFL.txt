@@ -1,0 +1,7 @@
+SIL Open Font License 1.1 applies to the self-hosted font files in this directory.
+
+- Cormorant Garamond by Christian Thalmann
+- Source Serif 4 by Frank Grießhammer, Adobe
+- Source Sans 3 by Paul D. Hunt, Adobe
+
+https://scripts.sil.org/OFL

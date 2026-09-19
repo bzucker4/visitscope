@@ -1,0 +1,15 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "atlas-relics/inquiry-form",
+  "title": "Inquiry form",
+  "category": "atlas-relics",
+  "icon": "email",
+  "description": "Public inquiry form for orders and catalog questions.",
+  "textdomain": "atlas-relics-core",
+  "supports": {
+    "html": false,
+    "align": ["wide"]
+  },
+  "render": "file:./render.php"
+}

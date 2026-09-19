@@ -1,0 +1,432 @@
+/**
+ * Atlas Relics presentation CSS.
+ * Tokens come from theme.json. This file handles layout, commerce, and a11y.
+ */
+
+:root {
+  --ar-focus: var(--wp--preset--color--gold);
+  --ar-radius: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+.skip-link:focus {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 100000;
+  padding: 0.75rem 1rem;
+  background: var(--wp--preset--color--navy);
+  color: var(--wp--preset--color--ivory);
+  clip: auto !important;
+  clip-path: none;
+  height: auto;
+  width: auto;
+}
+
+:focus-visible {
+  outline: 2px solid var(--ar-focus);
+  outline-offset: 3px;
+}
+
+.wp-site-blocks {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.wp-site-blocks > main,
+.wp-site-blocks > .wp-block-group:has(> main),
+main#wp--skip-link--target {
+  flex: 1 0 auto;
+}
+
+/* Header
+   ------------------------------------------- */
+
+.ar-header {
+  background: var(--wp--preset--color--navy);
+  color: var(--wp--preset--color--ivory);
+}
+
+.ar-header a {
+  color: inherit;
+}
+
+.ar-header .wp-block-site-title a {
+  letter-spacing: 0.08em;
+  text-transform: none;
+}
+
+.ar-header .wp-block-navigation a:not(.wp-block-navigation-submenu .wp-block-navigation-item__content):hover {
+  color: var(--wp--preset--color--gold);
+}
+
+.ar-header .wp-block-navigation__responsive-container-open,
+.ar-header .wp-block-navigation__responsive-container-close {
+  color: var(--wp--preset--color--ivory);
+}
+
+.ar-header .wp-block-navigation__responsive-container.is-menu-open {
+  background: var(--wp--preset--color--navy);
+  color: var(--wp--preset--color--ivory);
+}
+
+.ar-kicker {
+  font-family: var(--wp--preset--font-family--sans);
+  font-size: var(--wp--preset--font-size--small);
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--wp--preset--color--gold);
+  margin: 0;
+}
+
+/* Hero
+   ------------------------------------------- */
+
+.ar-hero {
+  position: relative;
+  overflow: hidden;
+}
+
+.ar-hero::after {
+  content: "";
+  position: absolute;
+  inset: auto 8% -20% auto;
+  width: min(28rem, 55vw);
+  height: min(28rem, 55vw);
+  border: 1px solid color-mix(in srgb, var(--wp--preset--color--gold) 35%, transparent);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.ar-hero-rule {
+  width: 3rem;
+  height: 1px;
+  background: var(--wp--preset--color--gold);
+  border: 0;
+  margin: 1.5rem 0;
+}
+
+/* Cards and product lines
+   ------------------------------------------- */
+
+.ar-card {
+  height: 100%;
+  border: 1px solid var(--wp--preset--color--line);
+  background: var(--wp--preset--color--paper);
+}
+
+.ar-card.is-navy {
+  background: var(--wp--preset--color--charcoal);
+  border-color: var(--wp--preset--color--navy-line);
+  color: var(--wp--preset--color--ivory);
+}
+
+.ar-card .ar-card-mark {
+  width: 3.25rem;
+  height: 3.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.ar-figure {
+  margin: 0;
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--wp--preset--color--navy) 6%, transparent), transparent 40%),
+    var(--wp--preset--color--parchment);
+  border: 1px solid var(--wp--preset--color--line);
+  min-height: 16rem;
+  display: grid;
+  place-items: center;
+}
+
+.ar-figure svg {
+  width: min(70%, 14rem);
+  height: auto;
+}
+
+.ar-label {
+  font-family: var(--wp--preset--font-family--sans);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--wp--preset--color--gold-dark);
+}
+
+/* Footer
+   ------------------------------------------- */
+
+.ar-footer {
+  background: var(--wp--preset--color--navy);
+  color: var(--wp--preset--color--ivory);
+  margin-top: auto;
+}
+
+.ar-footer a {
+  color: inherit;
+}
+
+.ar-footer .wp-block-navigation a {
+  text-decoration: none;
+}
+
+.ar-footer small,
+.ar-colophon {
+  font-family: var(--wp--preset--font-family--sans);
+  font-size: var(--wp--preset--font-size--small);
+  color: color-mix(in srgb, var(--wp--preset--color--ivory) 72%, var(--wp--preset--color--muted));
+}
+
+/* Forms (plugin markup)
+   ------------------------------------------- */
+
+.ar-form {
+  display: grid;
+  gap: 1.25rem;
+  max-width: 36rem;
+}
+
+.ar-form label {
+  display: grid;
+  gap: 0.4rem;
+  font-family: var(--wp--preset--font-family--sans);
+  font-size: var(--wp--preset--font-size--small);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.ar-form input,
+.ar-form select,
+.ar-form textarea {
+  width: 100%;
+  font: inherit;
+  font-family: var(--wp--preset--font-family--serif);
+  font-weight: 400;
+  letter-spacing: 0;
+  color: var(--wp--preset--color--ink);
+  background: var(--wp--preset--color--paper);
+  border: 1px solid var(--wp--preset--color--line);
+  border-radius: 0;
+  padding: 0.75rem 0.85rem;
+  min-height: 2.75rem;
+}
+
+.ar-form textarea {
+  min-height: 8rem;
+  resize: vertical;
+}
+
+.ar-form input:focus-visible,
+.ar-form select:focus-visible,
+.ar-form textarea:focus-visible {
+  outline: 2px solid var(--ar-focus);
+  outline-offset: 2px;
+}
+
+.ar-form .ar-field-help,
+.ar-form .ar-field-error {
+  font-family: var(--wp--preset--font-family--sans);
+  font-size: var(--wp--preset--font-size--small);
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+.ar-form .ar-field-help {
+  color: var(--wp--preset--color--muted);
+}
+
+.ar-form .ar-field-error {
+  color: #8a2f2a;
+}
+
+.ar-form [aria-invalid="true"] {
+  border-color: #8a2f2a;
+}
+
+.ar-honeypot {
+  position: absolute;
+  left: -10000px;
+  height: 0;
+  overflow: hidden;
+}
+
+.ar-consent {
+  display: grid !important;
+  grid-template-columns: auto 1fr;
+  gap: 0.6rem;
+  align-items: start;
+  font-weight: 400 !important;
+  letter-spacing: 0 !important;
+}
+
+.ar-consent input {
+  width: auto !important;
+  min-height: 1.25rem;
+  margin-top: 0.25rem;
+}
+
+.ar-product-subtitle {
+  font-family: var(--wp--preset--font-family--serif);
+  font-style: italic;
+  color: var(--wp--preset--color--muted);
+  margin-top: 0;
+}
+
+.ar-intended-use {
+  max-width: 42rem;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  border: 1px solid var(--wp--preset--color--line);
+  background: var(--wp--preset--color--paper);
+}
+
+.ar-intended-use h2 {
+  margin-top: 0;
+}
+
+.ar-notice {
+  padding: 1rem 1.15rem;
+  border: 1px solid var(--wp--preset--color--line);
+  background: var(--wp--preset--color--paper);
+  font-family: var(--wp--preset--font-family--sans);
+  font-size: var(--wp--preset--font-size--medium);
+}
+
+.ar-notice.is-success {
+  border-color: color-mix(in srgb, var(--wp--preset--color--gold) 50%, var(--wp--preset--color--line));
+}
+
+.ar-notice.is-error {
+  border-color: #8a2f2a;
+}
+
+/* WooCommerce
+   ------------------------------------------- */
+
+.woocommerce .quantity .qty,
+.woocommerce-page input.input-text,
+.woocommerce-page select,
+.woocommerce-page textarea {
+  border-radius: 0;
+  border-color: var(--wp--preset--color--line);
+  background: var(--wp--preset--color--paper);
+  min-height: 2.75rem;
+}
+
+.woocommerce div.product p.price,
+.woocommerce div.product span.price {
+  font-family: var(--wp--preset--font-family--sans);
+  color: var(--wp--preset--color--ink);
+}
+
+.woocommerce span.onsale {
+  background: var(--wp--preset--color--navy);
+  color: var(--wp--preset--color--ivory);
+  border-radius: 0;
+}
+
+.woocommerce #respond input#submit,
+.woocommerce a.button,
+.woocommerce button.button,
+.woocommerce input.button,
+.woocommerce .product .single_add_to_cart_button,
+.wc-block-components-button {
+  font-family: var(--wp--preset--font-family--sans);
+  font-size: var(--wp--preset--font-size--small);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: 0;
+  background: var(--wp--preset--color--navy);
+  color: var(--wp--preset--color--ivory);
+  border: 1px solid var(--wp--preset--color--navy);
+}
+
+.woocommerce #respond input#submit:hover,
+.woocommerce a.button:hover,
+.woocommerce button.button:hover,
+.woocommerce input.button:hover,
+.wc-block-components-button:hover {
+  background: var(--wp--preset--color--charcoal);
+  color: var(--wp--preset--color--ivory);
+}
+
+.wc-block-grid__product,
+.wp-block-woocommerce-product-collection .wc-block-product,
+ul.products li.product {
+  border: 1px solid var(--wp--preset--color--line);
+  background: var(--wp--preset--color--paper);
+  padding: 1rem;
+}
+
+.woocommerce-error,
+.woocommerce-info,
+.woocommerce-message {
+  border-top-color: var(--wp--preset--color--gold);
+  background: var(--wp--preset--color--paper);
+}
+
+.woocommerce-checkout .woocommerce-form-login,
+.woocommerce-checkout .woocommerce-form-coupon {
+  border-radius: 0;
+}
+
+.wp-block-woocommerce-product-image img,
+.woocommerce-product-gallery img {
+  background: var(--wp--preset--color--parchment);
+}
+
+/* Journal / posts
+   ------------------------------------------- */
+
+.ar-meta {
+  font-family: var(--wp--preset--font-family--sans);
+  font-size: var(--wp--preset--font-size--small);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--wp--preset--color--muted);
+}
+
+article .entry-content > p:first-of-type {
+  font-size: clamp(1.2rem, 2vw, 1.4rem);
+  line-height: 1.65;
+}
+
+/* 404 and search
+   ------------------------------------------- */
+
+.ar-empty {
+  min-height: 50vh;
+}
+
+/* Admin bar overlap */
+.admin-bar .ar-header {
+  top: 0;
+}
+
+@media (max-width: 781px) {
+  .ar-hero::after {
+    display: none;
+  }
+
+  .wp-block-columns.ar-split {
+    gap: 2rem;
+  }
+}

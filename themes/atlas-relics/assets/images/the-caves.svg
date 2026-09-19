@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 180" role="img" aria-labelledby="arCavesTitle arCavesDesc">
+  <title id="arCavesTitle">The Caves emblem</title>
+  <desc id="arCavesDesc">Nested arches suggesting inner chambers rather than a landscape.</desc>
+  <rect width="240" height="180" fill="#101820"/>
+  <path d="M36 150 V78 A84 84 0 0 1 204 78 V150" fill="none" stroke="#B08D57" stroke-width="1.2"/>
+  <path d="M56 150 V90 A64 64 0 0 1 184 90 V150" fill="none" stroke="#F4EFE4" stroke-width="0.8" opacity="0.7"/>
+  <path d="M78 150 V108 A42 42 0 0 1 162 108 V150" fill="none" stroke="#B08D57" stroke-width="0.8"/>
+  <rect x="112" y="128" width="16" height="22" fill="none" stroke="#F4EFE4" stroke-width="0.8"/>
+</svg>
