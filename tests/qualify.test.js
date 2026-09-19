@@ -32,10 +32,10 @@ function janeMiller() {
       contact: { name: "Jane Miller", email: "jane@example.com", phone: "(555) 555-0148", zip: "14607" }
     },
     photos: [
-      { label: "Front / entry" }, { label: "Living room" }, { label: "Living room" },
-      { label: "Kitchen" }, { label: "Kitchen" }, { label: "Primary bedroom" }, { label: "Primary bedroom" },
-      { label: "Basement" }, { label: "Basement" }, { label: "Basement" }, { label: "Garage" }, { label: "Garage" },
-      { label: "Attic" }
+      { slot: "p0", label: "Front / entry" }, { slot: "p1", label: "Living room" }, { slot: "p1", label: "Living room" },
+      { slot: "p2", label: "Kitchen" }, { slot: "p2", label: "Kitchen" }, { slot: "p3", label: "Primary bedroom" }, { slot: "p3", label: "Primary bedroom" },
+      { slot: "p4", label: "Basement" }, { slot: "p4", label: "Basement" }, { slot: "p4", label: "Basement" }, { slot: "p5", label: "Garage" }, { slot: "p5", label: "Garage" },
+      { slot: "p6", label: "Attic" }
     ]
   };
 }
@@ -52,6 +52,8 @@ test("Jane Miller intake recommends an in-home consultation", () => {
   assert.ok(result.signals.some((signal) => signal.id === "sorting_not_started"));
   assert.ok(result.signals.some((signal) => signal.id === "sale_prep"));
   assert.ok(result.signals.some((signal) => signal.id === "large_scope"));
+  assert.equal(result.photos.filledSlots, result.photos.recommended.length);
+  assert.ok(!result.missing.some((item) => item.id === "photoCoverage"));
 });
 
 test("sparse intake requests missing information", () => {

@@ -177,10 +177,10 @@
       const subject = encodeURIComponent((business.copy && business.copy.missingInfoSubject) || "A few more details would help");
       const body = encodeURIComponent(missingMessage(inquiry, qualification));
       const email = inquiry.intake.contact.email;
-      if (email) location.href = `mailto:${email}?subject=${subject}&body=${body}`;
+      if (email) window.open(`mailto:${email}?subject=${subject}&body=${body}`);
       note = qualification.missing.map((item) => item.label).join(", ") || "Requested additional project information.";
     } else if (actionId === "call") {
-      if (inquiry.intake.contact.phone) location.href = `tel:${inquiry.intake.contact.phone}`;
+      if (inquiry.intake.contact.phone) window.open(`tel:${inquiry.intake.contact.phone}`);
       note = "Marked for a call.";
     } else if (actionId === "visit") {
       if (business.consultationUrl) window.open(business.consultationUrl, "_blank");

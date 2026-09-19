@@ -58,7 +58,7 @@
   }
 
   function placeholderPhoto(label, index, count) {
-    const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="800" height="520"><rect fill="#efe7de" width="100%" height="100%"/><text x="50%" y="48%" text-anchor="middle" fill="#6e5648" font-family="Georgia,serif" font-size="28">${label}</text><text x="50%" y="58%" text-anchor="middle" fill="#8a7c72" font-family="sans-serif" font-size="16">Sample photo ${count}</text></svg>`;
+    const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="800" height="520"><rect fill="#d8cfc4" width="100%" height="100%"/><rect x="24" y="24" width="752" height="472" fill="#f7f3ef" stroke="#6e5648" stroke-width="3"/><text x="50%" y="46%" text-anchor="middle" fill="#5e493e" font-family="Georgia,serif" font-size="34">${label}</text><text x="50%" y="58%" text-anchor="middle" fill="#7a5c4b" font-family="sans-serif" font-size="18">Sample photo ${count}</text></svg>`;
     return { slot: "p" + index, label, name: `${label}-${count}.svg`, dataUrl: "data:image/svg+xml;utf8," + encodeURIComponent(svg) };
   }
 

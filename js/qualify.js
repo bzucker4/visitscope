@@ -121,7 +121,7 @@
     const items = photos || [];
     const bySlot = {};
     items.forEach((photo) => {
-      const key = photo.slot || photo.label;
+      const key = photo.label || photo.slot;
       if (!bySlot[key]) bySlot[key] = [];
       bySlot[key].push(photo);
     });
