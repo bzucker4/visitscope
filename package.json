@@ -1,0 +1,16 @@
+{
+  "name": "visitscope",
+  "version": "1.0.0",
+  "private": true,
+  "description": "VisitScope — project intake for home-transition professionals. Static frontend + Netlify Functions backend.",
+  "scripts": {
+    "dev": "netlify dev",
+    "test:scoring": "node scoring.selftest.js"
+  },
+  "dependencies": {
+    "@netlify/blobs": "^8.2.0"
+  },
+  "devDependencies": {
+    "netlify-cli": "^27.10.0"
+  }
+}

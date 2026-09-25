@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Provider inbox | VisitScope</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body class="brief-page">
+<header class="marketing-nav compact-nav">
+  <a class="pv-brand" href="index.html"><span class="pv-mark" id="navMark">V</span><strong id="navBrand">VisitScope</strong></a>
+  <div class="brief-nav-actions">
+    <span class="internal-tag">Internal tool</span>
+    <a class="nav-cta" href="assessment.html">New assessment</a>
+    <button type="button" class="text-btn hidden" id="logoutBtn">Sign out</button>
+  </div>
+</header>
+<main class="inbox-main">
+
+  <!-- Access gate -->
+  <section id="gateView" class="hidden">
+    <div class="gate-card">
+      <span class="kicker">Provider access</span>
+      <h1>Enter your provider passcode</h1>
+      <p class="inbox-sub">This inbox is internal. Enter the shared passcode to view submissions.</p>
+      <form id="gateForm">
+        <div class="field"><label for="passcode">Passcode</label><input id="passcode" type="password" autocomplete="current-password" placeholder="••••••••"></div>
+        <div class="error" id="gateError"></div>
+        <button class="btn btn-primary btn-large" type="submit">Unlock inbox</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Provider view -->
+  <section id="providerView" class="hidden">
+    <div class="inbox-head">
+      <div>
+        <span class="kicker">Provider inbox</span>
+        <h1>Submissions</h1>
+        <p class="inbox-sub">Every assessment, stored centrally. Internal view — no client-facing.</p>
+      </div>
+      <div class="inbox-head-actions">
+        <span class="inbox-count" id="inboxCount"></span>
+        <button type="button" class="btn btn-ghost" id="settingsToggle">Settings</button>
+      </div>
+    </div>
+
+    <!-- Settings panel -->
+    <section id="settingsPanel" class="settings-panel hidden">
+      <h2>Business settings</h2>
+      <div class="settings-grid">
+        <div class="field"><label for="setName">Business name</label><input id="setName" placeholder="VisitScope"></div>
+        <div class="field"><label for="setInitials">Logo initials <span>if no logo image</span></label><input id="setInitials" maxlength="3" placeholder="V"></div>
+        <div class="field"><label for="setLogo">Logo image URL <span>optional</span></label><input id="setLogo" placeholder="https://…/logo.png"></div>
+        <div class="field"><label for="setNotify">Notification email</label><input id="setNotify" type="email" placeholder="you@business.com"></div>
+      </div>
+      <div class="field"><label for="setServices">Services offered <span>one per line</span></label><textarea id="setServices" rows="4"></textarea></div>
+      <h3 class="settings-sub">Qualification settings</h3>
+      <div class="settings-grid">
+        <div class="field"><label>Urgent timelines</label>
+          <div class="pill-grid" id="setUrgent">
+            <label><input type="checkbox" value="ASAP"><span>ASAP</span></label>
+            <label><input type="checkbox" value="30 days"><span>30 days</span></label>
+            <label><input type="checkbox" value="60–90 days"><span>60–90 days</span></label>
+            <label><input type="checkbox" value="Flexible"><span>Flexible</span></label>
+          </div>
+        </div>
+        <div class="field"><label for="setRatio">Photo coverage for "Complete" (%)</label><input id="setRatio" type="number" min="0" max="100" step="5" placeholder="60"></div>
+        <div class="field"><label for="setDM">Min decision-makers = complex</label><input id="setDM" type="number" min="1" placeholder="3"></div>
+        <div class="field"><label for="setAreas">Min extra areas = complex</label><input id="setAreas" type="number" min="1" placeholder="3"></div>
+        <div class="field"><label class="inline-check"><input id="setHeavy" type="checkbox"> Heavy contents counts as complex</label></div>
+      </div>
+      <div class="settings-actions">
+        <div class="error" id="settingsMsg"></div>
+        <button type="button" class="btn btn-primary" id="settingsSave">Save settings</button>
+      </div>
+    </section>
+
+    <div id="inboxRoot"></div>
+  </section>
+
+</main>
+
+<script src="config.js"></script>
+<script src="scoring.js"></script>
+<script src="inbox.js"></script>
+</body>
+</html>

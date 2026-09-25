@@ -1,0 +1,24 @@
+# VisitScope — static frontend + serverless functions on Netlify.
+# The site root is published as-is (no build step). Functions live in netlify/functions.
+
+[build]
+  publish = "."
+  functions = "netlify/functions"
+
+[functions]
+  # Bundle node dependencies (e.g. @netlify/blobs) with esbuild.
+  node_bundler = "esbuild"
+  # scoring.js lives at the repo root and is required() by functions.
+  included_files = ["scoring.js"]
+
+[dev]
+  # `netlify dev` serves the static site and functions together, with a local
+  # Netlify Blobs sandbox so the full loop can be tested without deploying.
+  publish = "."
+  port = 8888
+
+# Friendly API paths -> functions
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
