@@ -1,1 +1,255 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="refresh" content="0;url=https://cszhl48y9t.zite.so"><title>VisitScope Project Assessment</title><link rel="canonical" href="https://cszhl48y9t.zite.so"></head><body><p>Opening the <a href="https://cszhl48y9t.zite.so">VisitScope Project Assessment</a>…</p></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#f6f2ed">
+<meta name="robots" content="noindex">
+<title>VisitScope Project Assessment</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body class="assessment-page">
+<div class="page-shell">
+  <div class="topbar">
+    <a class="business-lockup" href="index.html">
+      <span class="business-mark" id="businessMark">V</span>
+      <span><strong id="businessName">VisitScope</strong><span id="brandName">Project assessment</span></span>
+    </a>
+    <span class="trust-mini">Private · takes about 5 minutes</span>
+  </div>
+
+  <div class="progress-shell" id="progressShell">
+    <div class="progress-meta"><span id="stepLabel">Step 1 of 7</span><span id="progressPct">0%</span></div>
+    <div class="progress-track"><div id="progressBar"></div></div>
+  </div>
+
+  <div class="assessment-card">
+
+    <!-- STEP 1 — Help type -->
+    <section class="step" data-step="0">
+      <span class="eyebrow">Step 1 of 7</span>
+      <h2>What kind of help are you looking for?</h2>
+      <p class="subcopy">Choose everything that fits. Your answers shape the rest of the questions — you can change them later.</p>
+      <div class="toggle-grid" data-array="helpTypes">
+        <label><input type="checkbox" data-array-input="helpTypes" value="Downsizing"><span>Downsizing</span></label>
+        <label><input type="checkbox" data-array-input="helpTypes" value="Senior move or relocation"><span>Senior move or relocation</span></label>
+        <label><input type="checkbox" data-array-input="helpTypes" value="Professional organizing"><span>Professional organizing</span></label>
+        <label><input type="checkbox" data-array-input="helpTypes" value="Estate transition"><span>Estate transition</span></label>
+        <label><input type="checkbox" data-array-input="helpTypes" value="Estate cleanout"><span>Estate cleanout</span></label>
+        <label><input type="checkbox" data-array-input="helpTypes" value="Preparing a home for sale"><span>Preparing a home for sale</span></label>
+        <label><input type="checkbox" data-array-input="helpTypes" value="Sorting belongings"><span>Sorting belongings</span></label>
+        <label><input type="checkbox" data-array-input="helpTypes" value="Donation or disposal coordination"><span>Donation or disposal coordination</span></label>
+        <label><input type="checkbox" data-array-input="helpTypes" value="Not sure yet"><span>Not sure yet</span></label>
+        <label><input type="checkbox" data-array-input="helpTypes" value="Other"><span>Other</span></label>
+      </div>
+      <div class="error" data-error></div>
+      <div class="nav-actions">
+        <a class="btn btn-ghost" href="index.html">Back to site</a>
+        <button class="btn btn-primary btn-large" data-next>Continue</button>
+      </div>
+    </section>
+
+    <!-- STEP 2 — Situation + property -->
+    <section class="step hidden" data-step="1">
+      <span class="eyebrow">Step 2 of 7</span>
+      <h2>Tell us about the home and situation.</h2>
+      <div class="field">
+        <label>What is going on?</label>
+        <div class="choice-grid compact" data-choice="situation">
+          <button type="button" class="choice-card" data-group="situation" data-value="Parent moving to assisted living"><span class="choice-icon">◱</span><span><strong>Parent moving to assisted living</strong></span><span class="chevron">›</span></button>
+          <button type="button" class="choice-card" data-group="situation" data-value="Downsizing in place"><span class="choice-icon">◲</span><span><strong>Downsizing in place</strong></span><span class="chevron">›</span></button>
+          <button type="button" class="choice-card" data-group="situation" data-value="Estate after a death"><span class="choice-icon">◳</span><span><strong>Estate after a death</strong></span><span class="chevron">›</span></button>
+          <button type="button" class="choice-card" data-group="situation" data-value="Selling the home"><span class="choice-icon">◰</span><span><strong>Selling the home</strong></span><span class="chevron">›</span></button>
+          <button type="button" class="choice-card" data-group="situation" data-value="Other"><span class="choice-icon">◇</span><span><strong>Something else</strong></span><span class="chevron">›</span></button>
+        </div>
+      </div>
+      <div class="field">
+        <label for="situationNote">Anything you want us to know <span>optional</span></label>
+        <input id="situationNote" data-field="situationNote" placeholder="A sentence about what's happening">
+      </div>
+      <div class="two-col">
+        <div class="field">
+          <label>Property type</label>
+          <div class="pill-grid" data-pill="propertyType">
+            <button type="button" data-value="House">House</button>
+            <button type="button" data-value="Apartment / condo">Apartment / condo</button>
+            <button type="button" data-value="Townhome">Townhome</button>
+            <button type="button" data-value="Other">Other</button>
+          </div>
+        </div>
+        <div class="field">
+          <label for="bedrooms">Bedrooms</label>
+          <input id="bedrooms" type="number" min="0" inputmode="numeric" placeholder="e.g. 4" data-field="bedrooms">
+        </div>
+      </div>
+      <div class="two-col">
+        <div class="field"><label for="yearsOccupied">Years occupied <span>approx is fine</span></label><input id="yearsOccupied" data-field="yearsOccupied" placeholder="e.g. 38"></div>
+        <div class="field"><label for="city">City / ZIP <span>optional</span></label><input id="city" data-field="city" placeholder="Rochester, NY"></div>
+      </div>
+      <div class="error" data-error></div>
+      <div class="nav-actions">
+        <button class="btn btn-secondary" data-back>Back</button>
+        <button class="btn btn-primary btn-large" data-next>Continue</button>
+      </div>
+    </section>
+
+    <!-- STEP 3 — Scope of stuff -->
+    <section class="step hidden" data-step="2">
+      <span class="eyebrow">Step 3 of 7</span>
+      <h2>How much is there, and where?</h2>
+      <div class="field">
+        <label>How full is the home?</label>
+        <div class="pill-grid" data-pill="contents">
+          <button type="button" data-value="Light">Light</button>
+          <button type="button" data-value="Moderate">Moderate</button>
+          <button type="button" data-value="Heavy">Heavy</button>
+        </div>
+      </div>
+      <div class="field">
+        <label>Has sorting started?</label>
+        <div class="pill-grid" data-pill="sorting">
+          <button type="button" data-value="Not started">Not started</button>
+          <button type="button" data-value="In progress">In progress</button>
+          <button type="button" data-value="Mostly done">Mostly done</button>
+        </div>
+      </div>
+      <div class="field">
+        <label>Extra areas that apply <span>select any</span></label>
+        <div class="toggle-grid" data-array="extraAreas">
+          <label><input type="checkbox" data-array-input="extraAreas" value="Basement"><span>Basement</span></label>
+          <label><input type="checkbox" data-array-input="extraAreas" value="Attic"><span>Attic</span></label>
+          <label><input type="checkbox" data-array-input="extraAreas" value="Garage"><span>Garage</span></label>
+          <label><input type="checkbox" data-array-input="extraAreas" value="Storage unit"><span>Storage unit</span></label>
+          <label><input type="checkbox" data-array-input="extraAreas" value="Shed"><span>Shed</span></label>
+        </div>
+      </div>
+      <div class="field">
+        <label for="access">Access concerns <span>optional</span></label>
+        <input id="access" data-field="access" placeholder="Stairs, no elevator, packed garage, narrow driveway…">
+      </div>
+      <div class="error" data-error></div>
+      <div class="nav-actions">
+        <button class="btn btn-secondary" data-back>Back</button>
+        <button class="btn btn-primary btn-large" data-next>Continue</button>
+      </div>
+    </section>
+
+    <!-- STEP 4 — Timing + people -->
+    <section class="step hidden" data-step="3">
+      <span class="eyebrow">Step 4 of 7</span>
+      <h2>Timing and who's involved.</h2>
+      <div class="field">
+        <label>Desired completion</label>
+        <div class="pill-grid" data-pill="timeline">
+          <button type="button" data-value="ASAP">ASAP</button>
+          <button type="button" data-value="30 days">Within 30 days</button>
+          <button type="button" data-value="60–90 days">60–90 days</button>
+          <button type="button" data-value="Flexible">Flexible</button>
+        </div>
+      </div>
+      <div class="field">
+        <label>Preparing the property for sale?</label>
+        <div class="pill-grid" data-pill="selling">
+          <button type="button" data-value="Yes">Yes</button>
+          <button type="button" data-value="No">No</button>
+          <button type="button" data-value="Not sure">Not sure</button>
+        </div>
+      </div>
+      <div class="two-col">
+        <div class="field"><label for="decisionMakers">How many decision-makers?</label><input id="decisionMakers" type="number" min="0" inputmode="numeric" placeholder="e.g. 3" data-field="decisionMakers"></div>
+        <div class="field"><label for="outOfTown">How many live out of town?</label><input id="outOfTown" type="number" min="0" inputmode="numeric" placeholder="e.g. 2" data-field="outOfTown"></div>
+      </div>
+      <div class="field"><label>Who should we call first?</label></div>
+      <div class="two-col">
+        <div class="field"><label for="contactName">Name</label><input id="contactName" data-contact="name" placeholder="Full name"></div>
+        <div class="field"><label for="contactPhone">Phone <span>optional if email given</span></label><input id="contactPhone" data-contact="phone" inputmode="tel" placeholder="(555) 555-0148"></div>
+      </div>
+      <div class="field"><label for="contactEmail">Email</label><input id="contactEmail" data-contact="email" type="email" placeholder="name@example.com"></div>
+      <div class="error" data-error></div>
+      <div class="nav-actions">
+        <button class="btn btn-secondary" data-back>Back</button>
+        <button class="btn btn-primary btn-large" data-next>Continue</button>
+      </div>
+    </section>
+
+    <!-- STEP 5 — Services -->
+    <section class="step hidden" data-step="4">
+      <span class="eyebrow">Step 5 of 7</span>
+      <h2>What might be needed?</h2>
+      <p class="subcopy">We pre-checked a few based on your answers. Adjust anything.</p>
+      <div class="detail-checks" data-array="services">
+        <label><input type="checkbox" data-array-input="services" value="Sorting"><span>Sorting</span></label>
+        <label><input type="checkbox" data-array-input="services" value="Downsizing"><span>Downsizing</span></label>
+        <label><input type="checkbox" data-array-input="services" value="Packing"><span>Packing</span></label>
+        <label><input type="checkbox" data-array-input="services" value="Donation coordination"><span>Donation coordination</span></label>
+        <label><input type="checkbox" data-array-input="services" value="Removal"><span>Removal</span></label>
+        <label><input type="checkbox" data-array-input="services" value="Home sale prep"><span>Home sale prep</span></label>
+        <label><input type="checkbox" data-array-input="services" value="Senior move management"><span>Senior move management</span></label>
+      </div>
+      <div class="error" data-error></div>
+      <div class="nav-actions">
+        <button class="btn btn-secondary" data-back>Back</button>
+        <button class="btn btn-primary btn-large" data-next>Continue</button>
+      </div>
+    </section>
+
+    <!-- STEP 6 — Guided photos -->
+    <section class="step hidden" data-step="5">
+      <span class="eyebrow">Step 6 of 7</span>
+      <h2>Add a few guided photos.</h2>
+      <p class="subcopy">Photos make the brief far more useful. Add what you can — you can skip any slot.</p>
+      <div class="photo-progress">
+        <div><strong id="photoCount">0</strong> of <span id="photoRecommended">0</span> suggested slots have a photo</div>
+        <div class="photo-meter"><span id="photoMeter"></span></div>
+      </div>
+      <div class="photo-grid" id="photoGrid"></div>
+      <p class="photo-note">Photos and contact details are for planning this project. Don't upload documents or anything you wouldn't show the team in person.</p>
+      <div class="error" data-error></div>
+      <div class="nav-actions">
+        <button class="btn btn-secondary" data-back>Back</button>
+        <button class="btn btn-primary btn-large" data-next>Continue</button>
+      </div>
+    </section>
+
+    <!-- STEP 7 — Notes + review -->
+    <section class="step hidden" data-step="6">
+      <span class="eyebrow">Step 7 of 7</span>
+      <h2>Anything else, then review.</h2>
+      <div class="field">
+        <label for="notes">Notes from the family <span>optional</span></label>
+        <textarea id="notes" rows="4" data-field="notes" placeholder="What would help the team understand this project?"></textarea>
+      </div>
+      <div class="consumer-summary">
+        <div class="summary-head"><span>Quick recap</span><button type="button" class="text-btn" id="editFromReview">Edit answers</button></div>
+        <div id="reviewRecap" class="consumer-summary-grid"></div>
+      </div>
+      <p class="photo-note">Photos and contact details are for planning this project. Don't upload documents or anything you wouldn't show the team in person.</p>
+      <div class="error" data-error></div>
+      <div class="nav-actions">
+        <button class="btn btn-secondary" data-back>Back</button>
+        <button class="btn btn-primary btn-large" id="submitBtn">Submit assessment</button>
+      </div>
+    </section>
+
+    <!-- RESULT -->
+    <section class="step result-step hidden" data-step="7">
+      <div class="result-check">✓</div>
+      <h2>Your project brief is ready.</h2>
+      <p class="hero-copy">Thanks — we've turned your answers into a decision-ready brief. The team will review it and reach out about next steps.</p>
+      <div class="result-actions">
+        <a class="btn btn-primary btn-large" id="resultBriefLink" href="brief.html">View the project brief</a>
+        <a class="text-btn" id="resultInboxLink" href="inbox.html">Open the provider inbox</a>
+        <a class="text-btn" href="assessment.html">Start another assessment</a>
+      </div>
+    </section>
+
+  </div>
+
+  <footer>Powered by <strong>VisitScope</strong> · Project intake for home-transition professionals</footer>
+</div>
+
+<script src="config.js"></script>
+<script src="scoring.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VisitScope scoring tests</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+  body{background:var(--bg);padding:32px 16px}
+  .test-shell{width:min(820px,100%);margin:0 auto}
+  .test-shell h1{font-family:Georgia,serif;font-weight:500;font-size:34px;margin:0 0 4px}
+  .test-shell .sub{color:var(--muted);font-size:14px;margin:0 0 22px}
+  .test-summary{border-radius:14px;padding:14px 16px;font-weight:750;margin-bottom:18px}
+  .test-summary.pass{background:#e6efe9;color:#2f5d49}
+  .test-summary.fail{background:#f6e4e2;color:#8f3a34}
+  .case{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 18px;margin-bottom:12px}
+  .case-head{display:flex;justify-content:space-between;align-items:center;gap:12px}
+  .case-head strong{font-size:14px}
+  .badge{font-size:11px;font-weight:800;letter-spacing:.06em;padding:5px 9px;border-radius:999px}
+  .badge.pass{background:#e6efe9;color:#2f5d49}
+  .badge.fail{background:#f6e4e2;color:#8f3a34}
+  .kv{display:grid;grid-template-columns:repeat(2,1fr);gap:4px 18px;margin-top:12px;font-size:12px;color:var(--muted)}
+  .kv b{color:var(--ink)}
+  .diff{color:#8f3a34;font-size:12px;margin-top:8px}
+  .diff div:before{content:"✗ ";font-weight:800}
+  code{background:#f1ebe4;border-radius:6px;padding:1px 5px;font-size:12px}
+</style>
+</head>
+<body>
+<div class="test-shell">
+  <h1>Scoring tests</h1>
+  <p class="sub">Runs <code>VisitScopeScoring.score()</code> against the five spec fixtures. Open the console for full output.</p>
+  <div id="summary" class="test-summary">Running…</div>
+  <div id="cases"></div>
+</div>
+
+<script src="scoring.js"></script>
+<script src="scoring.fixtures.js"></script>
+<script>
+(function(){
+  var fixtures = window.VisitScopeFixtures || [];
+  var casesEl = document.getElementById('cases');
+  var summaryEl = document.getElementById('summary');
+  var passed = 0;
+
+  fixtures.forEach(function(f){
+    var r = VisitScopeScoring.score(f.assessment);
+    var diffs = [];
+    Object.keys(f.expect).forEach(function(k){
+      var got = k === 'nextStep' ? r.nextStep.key : r[k];
+      if (got !== f.expect[k]) diffs.push(k + ': expected ' + f.expect[k] + ', got ' + got);
+    });
+    var ok = diffs.length === 0;
+    if (ok) passed++;
+
+    var card = document.createElement('div');
+    card.className = 'case';
+    card.innerHTML =
+      '<div class="case-head"><strong>' + f.name + '</strong>' +
+      '<span class="badge ' + (ok ? 'pass' : 'fail') + '">' + (ok ? 'PASS' : 'FAIL') + '</span></div>' +
+      '<div class="kv">' +
+        '<div>Readiness: <b>' + r.readiness + '</b></div>' +
+        '<div>Complexity: <b>' + r.complexity + '</b></div>' +
+        '<div>Urgency: <b>' + r.urgency + '</b></div>' +
+        '<div>Info quality: <b>' + r.infoQuality + '</b></div>' +
+        '<div>Next step: <b>' + r.nextStep.key + '</b> — ' + r.nextStep.label + '</div>' +
+        '<div>Services: <b>' + (r.services.join(', ') || '—') + '</b></div>' +
+      '</div>' +
+      (ok ? '' : '<div class="diff">' + diffs.map(function(d){ return '<div>' + d + '</div>'; }).join('') + '</div>');
+    casesEl.appendChild(card);
+
+    (ok ? console.log : console.error)((ok ? 'PASS' : 'FAIL') + ' — ' + f.name, r);
+  });
+
+  var allPass = passed === fixtures.length;
+  summaryEl.className = 'test-summary ' + (allPass ? 'pass' : 'fail');
+  summaryEl.textContent = passed + ' / ' + fixtures.length + ' fixtures passing' + (allPass ? ' — all green.' : ' — see failures below.');
+})();
+</script>
+</body>
+</html>
