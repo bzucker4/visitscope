@@ -177,6 +177,19 @@
     }
   }
 
+  function renderReceived() {
+    $('#briefKicker').textContent = 'Brief received';
+    $('#briefHeadline').textContent = 'Thanks — your brief was received.';
+    $('#briefSub').textContent = 'The team has your project details and will review them before reaching out about next steps.';
+    $('#briefRoot').innerHTML =
+      '<section class="full-brief brief-received">' +
+      '<div class="result-check">✓</div>' +
+      '<p class="client-note">Your information is kept private and is used only to plan your project. ' +
+      'If you need to add or change anything, reply to the team using the email or phone number they gave you.</p>' +
+      '</section>';
+    $('#briefBottomCta').innerHTML = '<p>Need to start over?</p><a class="cta-primary" href="assessment.html">Start a new assessment →</a>';
+  }
+
   function renderNotFound(id) {
     $('#briefKicker').textContent = 'Brief not found';
     $('#briefHeadline').textContent = 'We couldn’t find that brief.';
@@ -195,9 +208,10 @@
       .then(function (r) { return r.json().then(function (d) { return { ok: r.ok, d: d }; }); })
       .then(function (res) {
         if (res.ok && res.d && res.d.record) render(res.d.record, { isExample: false });
+        else if (res.ok && res.d && res.d.received) renderReceived();
         else renderNotFound(id);
       })
-      .catch(function () { renderNotFound(id); });
+      .catch(function () { renderReceived(); });
   } else {
     render(exampleRecord(), { isExample: true });
   }

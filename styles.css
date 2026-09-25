@@ -117,3 +117,12 @@
 #setUrgent span{display:block;border:1px solid var(--line);border-radius:12px;padding:9px 12px;font-size:13px;background:#fff}
 #setUrgent input:checked+span{border-color:var(--accent);background:#f4ece5;box-shadow:inset 0 0 0 1px var(--accent)}
 @media(max-width:720px){.settings-grid{grid-template-columns:1fr}.inbox-head-actions{width:100%;justify-content:space-between}}
+
+
+/* v1.2 — privacy page + brief-received */
+.privacy-copy h2{font-family:Georgia,serif;font-weight:500;font-size:22px;margin:22px 0 8px}
+.privacy-copy h2:first-child{margin-top:0}
+.privacy-copy p{color:#5e554e;line-height:1.65;margin:0 0 10px}
+.privacy-copy ul{color:#5e554e;line-height:1.7;margin:0 0 10px;padding-left:20px}
+.brief-received{max-width:640px;margin:40px auto;text-align:center}
+.brief-received .result-check{margin:0 auto 18px}

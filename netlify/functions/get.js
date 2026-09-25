@@ -1,12 +1,16 @@
 // GET /api/get?id=<id> — return one assessment as a brief-ready record.
-// Public by unguessable id (so the just-submitted client and provider links both work).
-// Photo bytes are never inlined; photos become URLs to the photo function.
+// Requires the provider session cookie. Unauthenticated callers get a neutral
+// "received" acknowledgement — never family data.
 'use strict';
 
 var http = require('./_lib/http');
+var auth = require('./_lib/auth');
 var store = require('./_lib/store');
 
 exports.handler = async function (event) {
+  // Family / public: acknowledge receipt only, reveal nothing (and don't confirm existence).
+  if (!auth.isProvider(event)) return http.json(200, { received: true });
+
   var id = (event.queryStringParameters && event.queryStringParameters.id) || '';
   if (!id) return http.json(400, { error: 'id required' });
 
