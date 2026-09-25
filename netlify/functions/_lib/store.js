@@ -107,6 +107,13 @@ async function setIdempotent(key, id) {
   await assessments().set('idemp:' + key, id);
 }
 
+// Per-IP submit rate limiting (timestamps stored under "rl:<ip>").
+async function getRate(ip) {
+  try { var a = await assessments().get('rl:' + ip, { type: 'json' }); return Array.isArray(a) ? a : []; }
+  catch (e) { return []; }
+}
+async function setRate(ip, times) { await assessments().setJSON('rl:' + ip, times); }
+
 async function savePhoto(id, n, buffer, contentType, slot) {
   var key = id + '/' + n;
   await photos().set(key, buffer, { metadata: { contentType: contentType || 'image/jpeg', slot: slot || '' } });
@@ -132,6 +139,8 @@ module.exports = {
   setRecord: setRecord,
   getIdempotent: getIdempotent,
   setIdempotent: setIdempotent,
+  getRate: getRate,
+  setRate: setRate,
   savePhoto: savePhoto,
   getPhoto: getPhoto
 };
