@@ -76,10 +76,6 @@
     return m ? decodeURIComponent(m[1]) : null;
   }
 
-  function loadAssessments() {
-    try { var raw = localStorage.getItem(STORAGE_KEY); return raw ? JSON.parse(raw) : []; } catch (e) { return []; }
-  }
-
   var READINESS_NOTE = { High: 'Ready for consultation', Medium: 'Some detail still pending', Low: 'Needs more information' };
   var COMPLEXITY_NOTE = { High: 'Multiple spaces and needs', Medium: 'A few areas involved', Low: 'Focused scope' };
   var URGENCY_NOTE = { High: 'Time-sensitive', Medium: 'Moderate timeline', Low: 'Flexible timing' };
@@ -195,9 +191,13 @@
   var wantExample = getParam('example') === '1';
 
   if (id && !wantExample) {
-    var found = loadAssessments().filter(function (r) { return r.id === id; })[0];
-    if (found) render(found, { isExample: false });
-    else renderNotFound(id);
+    fetch('/api/get?id=' + encodeURIComponent(id))
+      .then(function (r) { return r.json().then(function (d) { return { ok: r.ok, d: d }; }); })
+      .then(function (res) {
+        if (res.ok && res.d && res.d.record) render(res.d.record, { isExample: false });
+        else renderNotFound(id);
+      })
+      .catch(function () { renderNotFound(id); });
   } else {
     render(exampleRecord(), { isExample: true });
   }

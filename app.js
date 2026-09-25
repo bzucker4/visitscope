@@ -33,6 +33,7 @@
   // ---- state ------------------------------------------------------------
   function freshState() {
     return {
+      idempotencyKey: '',
       helpTypes: [], situation: '', situationNote: '', propertyType: '', bedrooms: '', yearsOccupied: '', city: '',
       contents: '', sorting: '', extraAreas: [], access: '',
       timeline: '', selling: '', decisionMakers: '', outOfTown: '', contact: { name: '', phone: '', email: '' },
@@ -59,29 +60,8 @@
   }
   function clearDraft() { try { localStorage.removeItem(DRAFT_KEY); } catch (e) {} }
 
-  function loadAssessments() {
-    try { var raw = localStorage.getItem(STORAGE_KEY); return raw ? JSON.parse(raw) : []; } catch (e) { return []; }
-  }
-  function trySet(list) {
-    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(list)); return true; } catch (e) { return false; }
-  }
-  // Save newest-first, trimming photo payloads if we hit the storage quota.
-  function saveAssessment(record) {
-    var list = [record].concat(loadAssessments());
-    if (trySet(list)) return { ok: true };
-    for (var i = list.length - 1; i >= 1; i--) {
-      if (list[i].photos && Object.keys(list[i].photos).length) {
-        list[i].photos = {};
-        if (trySet(list)) return { ok: true, note: 'older-photos-trimmed' };
-      }
-    }
-    if (record.photos && Object.keys(record.photos).length) {
-      record.photos = {};
-      record.photoNote = 'Photos were too large to store in this browser.';
-      if (trySet(list)) return { ok: true, note: 'photos-dropped' };
-    }
-    return { ok: false };
-  }
+  // Submitted assessments now live on the server (Netlify Blobs); the browser only
+  // keeps a pre-submit draft. STORAGE_KEY is retained for reference/compat.
 
   // ---- steps / navigation ----------------------------------------------
   var steps = $$('.step');
@@ -266,13 +246,13 @@
   }
 
   // ---- submit -----------------------------------------------------------
-  function genId() { return 'vs-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 7); }
+  function genKey() {
+    return 'vs-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 8) + Math.random().toString(36).slice(2, 6);
+  }
 
-  function buildRecord() {
+  function buildPayload() {
     return {
-      id: genId(),
-      createdAt: new Date().toISOString(),
-      status: 'New',
+      idempotencyKey: state.idempotencyKey,
       helpTypes: state.helpTypes.slice(),
       situation: state.situation,
       situationNote: state.situationNote,
@@ -290,13 +270,14 @@
       outOfTown: state.outOfTown,
       contact: { name: state.contact.name, phone: state.contact.phone, email: state.contact.email },
       services: state.services.slice(),
-      photos: JSON.parse(JSON.stringify(state.photos || {})),
-      notes: state.notes,
-      scores: Scoring.score(state)
+      photos: state.photos,
+      notes: state.notes
     };
   }
 
+  var submitting = false;
   function submit() {
+    if (submitting) return;
     var msg = validators[3]();
     if (msg) {
       showStep(3);
@@ -304,14 +285,64 @@
       if (e3) e3.textContent = msg;
       return;
     }
-    var record = buildRecord();
-    var res = saveAssessment(record);
-    clearDraft();
-    var briefLink = $('#resultBriefLink');
-    if (briefLink) briefLink.href = 'brief.html?id=' + encodeURIComponent(record.id);
+    var btn = $('#submitBtn');
     var errEl = steps[6].querySelector('[data-error]');
-    if (!res.ok && errEl) errEl.textContent = 'Saved, but photos could not be stored on this device.';
-    showStep(7);
+    if (errEl) errEl.textContent = '';
+    submitting = true;
+    if (btn) { btn.disabled = true; btn.textContent = 'Submitting…'; }
+
+    fetch('/api/submit', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify(buildPayload())
+    }).then(function (resp) {
+      return resp.json().then(function (data) { return { ok: resp.ok, data: data }; });
+    }).then(function (res) {
+      if (!res.ok || !res.data.id) throw new Error((res.data && res.data.error) || 'submit failed');
+      clearDraft();
+      var briefLink = $('#resultBriefLink');
+      if (briefLink) briefLink.href = 'brief.html?id=' + encodeURIComponent(res.data.id);
+      showStep(7);
+    }).catch(function (e) {
+      submitting = false;
+      if (btn) { btn.disabled = false; btn.textContent = 'Submit assessment'; }
+      if (errEl) errEl.textContent = 'Could not submit (' + (e.message || e) + '). Please try again.';
+    });
+  }
+
+  // ---- settings (branding + services) -----------------------------------
+  function renderServices(services) {
+    var wrap = document.querySelector('[data-array="services"]');
+    if (!wrap || !services || !services.length) return;
+    var selected = state.services.slice();
+    wrap.innerHTML = services.map(function (v) {
+      var checked = selected.indexOf(v) !== -1 ? ' checked' : '';
+      return '<label><input type="checkbox" data-array-input="services" value="' + esc(v) + '"' + checked + '><span>' + esc(v) + '</span></label>';
+    }).join('');
+    $$('[data-array-input="services"]', wrap).forEach(function (cb) {
+      cb.addEventListener('change', function () {
+        state.services = $$('[data-array-input="services"]').filter(function (x) { return x.checked; }).map(function (x) { return x.value; });
+        state.servicesTouched = true;
+        saveDraft();
+      });
+    });
+  }
+
+  function applySettings(s) {
+    if (!s) return;
+    if ($('#businessName')) $('#businessName').textContent = s.businessName || 'VisitScope';
+    if ($('#businessMark')) {
+      if (s.logoUrl) $('#businessMark').innerHTML = '<img src="' + esc(s.logoUrl) + '" alt="" style="width:100%;height:100%;object-fit:cover;border-radius:inherit">';
+      else $('#businessMark').textContent = s.businessInitials || 'V';
+    }
+    renderServices(s.services);
+    if (current === 4 && !state.servicesTouched) prefillServices();
+  }
+
+  function loadSettings() {
+    fetch('/api/settings').then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (d) { if (d && d.settings) applySettings(d.settings); })
+      .catch(function () { /* offline / no backend — static defaults remain */ });
   }
 
   // ---- hydrate UI from state -------------------------------------------
@@ -392,7 +423,9 @@
   // ---- init -------------------------------------------------------------
   var draft = loadDraft();
   if (draft) state = draft;
+  if (!state.idempotencyKey) { state.idempotencyKey = genKey(); saveDraft(); }
   wire();
   hydrateUI();
+  loadSettings();
   showStep(0);
 })();

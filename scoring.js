@@ -74,6 +74,23 @@
   }
 
   // Conservative "out of scope" hook. Kept intentionally strict so refer is rare.
+  // Configurable qualification knobs. Defaults reproduce the original behaviour.
+  var DEFAULT_Q = {
+    urgentTimelines: ['ASAP', '30 days'],
+    completePhotoRatio: 0.6,
+    heavyIsComplex: true,
+    minDecisionMakersComplex: 3,
+    minExtraAreasComplex: 3
+  };
+  function mergeQ(settings) {
+    var q = {};
+    Object.keys(DEFAULT_Q).forEach(function (k) { q[k] = DEFAULT_Q[k]; });
+    var s = (settings && settings.qualification) || settings || {};
+    Object.keys(DEFAULT_Q).forEach(function (k) { if (s[k] !== undefined && s[k] !== null) q[k] = s[k]; });
+    if (!Array.isArray(q.urgentTimelines)) q.urgentTimelines = DEFAULT_Q.urgentTimelines;
+    return q;
+  }
+
   function looksOutOfScope(a) {
     a = a || {};
     var help = arr(a.helpTypes);
@@ -118,8 +135,9 @@
     return out;
   }
 
-  function score(a) {
+  function score(a, settings) {
     a = a || {};
+    var q = mergeQ(settings);
 
     var contents = a.contents || '';
     var sorting = a.sorting || '';
@@ -132,7 +150,7 @@
 
     // --- Urgency -----------------------------------------------------------
     var urgency = 'Low';
-    if (timeline === 'ASAP' || timeline === '30 days') {
+    if (q.urgentTimelines.indexOf(timeline) !== -1) {
       urgency = 'High';
     } else if (timeline === '60–90 days' || timeline === '60-90 days') {
       urgency = 'Medium';
@@ -146,10 +164,10 @@
     }
 
     // --- Complexity --------------------------------------------------------
-    var heavy = contents === 'Heavy';
+    var heavy = contents === 'Heavy' && q.heavyIsComplex;
     var notStarted = sorting === 'Not started';
-    var manyAreas = extraAreas.length >= 3;
-    var manyDecision = decisionMakers >= 3;
+    var manyAreas = extraAreas.length >= q.minExtraAreasComplex;
+    var manyDecision = decisionMakers >= q.minDecisionMakersComplex;
 
     var complexity;
     if (heavy || notStarted || manyAreas || manyDecision) {
@@ -173,7 +191,7 @@
     var contactOk = hasContact(a);
 
     var infoQuality;
-    if (contactOk && photoRatio >= 0.6) {
+    if (contactOk && photoRatio >= q.completePhotoRatio) {
       infoQuality = 'Complete';
     } else if (filled > 0) {
       infoQuality = 'Partial';
@@ -228,7 +246,7 @@
     else if (timeline === '30 days') signals.push('Deadline within 30 days');
     else if (timeline === '60–90 days' || timeline === '60-90 days') signals.push('Target within 60–90 days');
     if (selling === 'Yes') signals.push('Preparing property for sale');
-    if (heavy) signals.push('Heavy contents');
+    if (contents === 'Heavy') signals.push('Heavy contents');
     if (notStarted) signals.push('Sorting not started');
     else if (sorting === 'In progress') signals.push('Sorting in progress');
     if (bedrooms >= 4 || manyAreas) signals.push('Large property scope');
