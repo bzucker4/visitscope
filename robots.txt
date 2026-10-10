@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://visitscope.netlify.app/sitemap.xml
